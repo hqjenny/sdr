@@ -22,13 +22,14 @@ class GolayCorrelatorAccelTests(c: GolayCorrelator) extends PeekPokeTester(c) {
   }
 
   // Test gain 
-  val dir = "/Users/qijing.huang/ChiselProjects/sdr/src/test/scala/receiver/slow_rx_baseband/PreambleProcessing/GolayCorrelator/"
+  val dir = "/Users/qijing.huang/ChiselProjects/sdr/src/test/scala/receiver/slow_rx_baseband/PreambleProcessing/"
   val in = ConverFileToList(dir+"In.dat", 8)
 
   val Ca = ConverFileToList(dir+"Ca_expected.dat", 16)
   val Cb = ConverFileToList(dir+"Cb_expected.dat", 16)
 
   for (i <- 0 until Ca.size){
+  //for (i <- 0 until 30){
     //println(i.toString)
     poke(c.io.in, in(i))
     //println("in:" + peek(c.io.in).toString)
@@ -36,17 +37,20 @@ class GolayCorrelatorAccelTests(c: GolayCorrelator) extends PeekPokeTester(c) {
     //println("wsubout:"+wsub.toString)
 
     // TODO Convert 65535 to 0xFFFF to -1 
-    var ca_out = peek(c.io.ca_out)
-    var cb_out = peek(c.io.cb_out)
+    //var ca_out = peek(c.io.ca_out)
+    //var cb_out = peek(c.io.cb_out)
     // If Ca is -1, convert it to 65535 
-    var Ca_test = Ca(i)
-    var Cb_test = Cb(i)
-    if (ca_out > 32767)
-      Ca_test = Ca(i) + 65536
-    if (cb_out > 32767)
-      Cb_test = Cb(i) + 65536
-    expect(c.io.ca_out, Ca_test)
-    expect(c.io.cb_out, Cb_test)
+//    var Ca_test = Ca(i)
+//    var Cb_test = Cb(i)
+//    if (ca_out > 32767)
+//      Ca_test = Ca(i) + 65536
+//    if (cb_out > 32767)
+//      Cb_test = Cb(i) + 65536
+//    expect(c.io.ca_out, Ca_test)
+//    expect(c.io.ca_out, Ca_test)
+    expect(c.io.ca_out, Ca(i))
+    expect(c.io.cb_out, Cb(i))
+
     //println("ca_out:" + peek(c.io.ca_out).toString + "  cb_out:" + peek(c.io.cb_out).toString)
 
     step(1)
