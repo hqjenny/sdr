@@ -22,7 +22,7 @@ class GolayCorrelatorAccelTests(c: GolayCorrelator) extends PeekPokeTester(c) {
   }
 
   // Test gain 
-  val dir = "/Users/qijing.huang/ChiselProjects/sdr/src/test/scala/receiver/slow_rx_baseband/PreambleProcessing/"
+  val dir = "/Users/qijing.huang/ChiselProjects/sdr/src/test/scala/receiver/slow_rx_baseband/PreambleProcessing/GolayCorrelator_Test/"
   val in = ConverFileToList(dir+"In.dat", 8)
 
   val Ca = ConverFileToList(dir+"Ca_expected.dat", 16)

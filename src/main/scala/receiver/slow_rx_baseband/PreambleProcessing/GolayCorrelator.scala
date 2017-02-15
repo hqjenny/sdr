@@ -103,7 +103,7 @@ class GolayCorrelator(regular_pipeline: Int=1) extends Module{
 
   // TODO GolayCorrelatorBase
   //val rows = Vec.tabulate(R){index => Module(new ArrayRowModule(W=W, V=V, H=H, G=G, I=index)).io}
-  val GCB = Vec.tabulate(7){index => Module(new GolayCorrelatorBase(3, D_128(index), W_128(index))).io} 
+  val GCB = Seq.tabulate(7){index => Module(new GolayCorrelatorBase(3, D_128(index), W_128(index))).io} 
   val delay_a = Vec.fill(7){Module(new Delay(regular_pipeline)).io} 
   val delay_b = Vec.fill(7){Module(new Delay(regular_pipeline)).io} 
   // TODO convert input signal 
